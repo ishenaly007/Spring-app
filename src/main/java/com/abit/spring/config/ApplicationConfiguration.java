@@ -2,6 +2,7 @@ package com.abit.spring.config;
 
 import com.abit.spring.database.repository.UserRepository;
 import com.abit.spring.database.repository.pool.ConnectionPool;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,8 @@ import org.springframework.context.annotation.Scope;
 public class ApplicationConfiguration {
 
     @Bean
-    public ConnectionPool connectionPool() {
-        return new ConnectionPool("asa", "asas", "url", 12);
+    public ConnectionPool connectionPool(@Value("${db.username}") String username) {
+        return new ConnectionPool(username, "asas", "url", 12);
     }
 
     @Bean
