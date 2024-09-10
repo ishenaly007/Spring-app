@@ -4,7 +4,6 @@ import com.abit.spring.database.repository.pool.ConnectionPool;
 import com.abit.spring.entity.User;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -19,17 +18,11 @@ public class UserRepository implements Repository<User> {
     private ConnectionPool connectionPool;
     @Autowired
     private List<ConnectionPool> connectionPools;
-    private JdbcTemplate jdbcTemplate;
 
     public UserRepository(
             ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
         this.connectionPools = connectionPools;
-    }
-
-    @Autowired
-    public UserRepository(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
@@ -39,10 +32,11 @@ public class UserRepository implements Repository<User> {
 
     @Override
     public User findById(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",
-                new Object[]{id}, (rs, rowNum) -> new User(
-                        rs.getInt("id"),
-                        rs.getString("username")));
+        //return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",
+                //new Object[]{id}, (rs, rowNum) -> new User(
+                        //rs.getInt("id"),
+                        //rs.getString("username")));
+        return null;
     }
 
     @Override
