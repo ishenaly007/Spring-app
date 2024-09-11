@@ -5,8 +5,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Setter
-@Getter
+@Data
+@Builder
 public class Company {
     private Integer id;
     private String name;

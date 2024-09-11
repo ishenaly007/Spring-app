@@ -25,13 +25,13 @@ public class CompanyService {
         return repository.findById(id);
     }
 
-    public Optional<CompanyDto> findCompanyById2(int id) {
+    public Optional<CompanyDto> findCompanyReadById2(int id) {
         return repository.findById2(id).map(entity -> {
-                    eventPublisher.publishEvent(new EntityEvent(
+            eventPublisher.publishEvent(new EntityEvent(
                             entity,
                             MyAccessType.READ));
                     return CompanyDto.builder()
-                            .name(entity.getName())
+                            .id(id)
                             .build();
                 }
         );

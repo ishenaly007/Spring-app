@@ -1,9 +1,8 @@
 package com.abit.spring.listener;
 
 import lombok.Getter;
-import lombok.ToString;
 import org.springframework.context.ApplicationEvent;
-@ToString
+
 @Getter
 public class EntityEvent extends ApplicationEvent {
     public MyAccessType myAccessType;
@@ -12,5 +11,4 @@ public class EntityEvent extends ApplicationEvent {
         super(source);
         this.myAccessType = accessType;
     }
-
 }

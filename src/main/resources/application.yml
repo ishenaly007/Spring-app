@@ -16,3 +16,10 @@ db:
       timeout: 30
     - size: 12
       timeout: 40
+logging:
+  level:
+    root: warn
+    com.abit.spring.database.repository.pool.ConnectionPool: info
+  file:
+    name: com.abit
+    path: /

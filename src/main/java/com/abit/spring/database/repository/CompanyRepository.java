@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @org.springframework.stereotype.Repository
 public class CompanyRepository implements Repository<Company> {
+
     @Autowired
     private ConnectionPool connectionPool;
 
@@ -18,8 +19,7 @@ public class CompanyRepository implements Repository<Company> {
 
     @Override
     public Optional<Company> findById2(int id) {
-        //return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM company WHERE id = ?", new Object[]{id}, (rs, rowNum) -> new Company(rs.getInt("id"), rs.getString("name"))));
-        return null;
+        return Optional.of(new Company(id, "Google"));
     }
 
     @Override
