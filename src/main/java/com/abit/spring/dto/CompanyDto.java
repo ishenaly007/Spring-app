@@ -9,5 +9,4 @@ import lombok.*;
 @Builder
 public class CompanyDto {
     private Integer id;
-    private String name;
 }

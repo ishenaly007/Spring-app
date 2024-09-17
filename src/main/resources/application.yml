@@ -3,8 +3,7 @@ db:
   password: futureSQL
   url: jdbc:postgresql://localhost:5432/postgres
   driver: org.postgresql.Driver
-  pool:
-    size: 12
+  pool:size: 12
   properties:
     first: 1
     last: 2
@@ -23,3 +22,16 @@ logging:
   file:
     name: com.abit
     path: /
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springdata
+    username: postgres
+    password: futureSQL
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        hbm2ddl:
+          auto: validate

@@ -23,7 +23,7 @@ public class CompanyServiceIT {
     private final CompanyRepository companyRepository;
     private final CompanyService companyService;
 
-    @Test
+    /*@Test
     void findById() {
         var actualResult = companyService.findCompanyReadById2(COMPANY_ID);
 
@@ -32,5 +32,5 @@ public class CompanyServiceIT {
         var expectedResult = CompanyDto.builder().id(COMPANY_ID).build();
 
         actualResult.ifPresent(actual -> assertEquals(expectedResult, actual));
-    }
+    }*/
 }

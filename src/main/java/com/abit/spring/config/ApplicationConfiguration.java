@@ -22,10 +22,4 @@ public class ApplicationConfiguration {
         return new ConnectionPool("asa2", "asas", "url", 12);
     }
 
-    @Bean
-    @Scope(BeanDefinition.SCOPE_SINGLETON)
-    @Profile("prod&web")
-    public UserRepository userRepository() {
-        return new UserRepository(connectionPool1());
-    }
 }

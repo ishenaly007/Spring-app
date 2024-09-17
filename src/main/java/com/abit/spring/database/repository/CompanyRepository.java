@@ -1,45 +1,19 @@
 package com.abit.spring.database.repository;
 
-import com.abit.spring.database.repository.pool.ConnectionPool;
 import com.abit.spring.entity.Company;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
-@org.springframework.stereotype.Repository
-public class CompanyRepository implements Repository<Company> {
 
-    @Autowired
-    private ConnectionPool connectionPool;
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
-    @Autowired
-    public CompanyRepository(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
+    @Query("select c from Company c " +
+           "join fetch c.locales cl " +
+           "where c.name = :name")
+    Optional<Company> findByName(String name);
 
-    @Override
-    public Optional<Company> findById2(int id) {
-        return Optional.of(new Company(id, "Google"));
-    }
-
-    @Override
-    public Company findById(int id) {
-        //return jdbcTemplate.queryForObject("SELECT * FROM company WHERE id = ?", new Object[]{id}, (rs, rowNum) -> new Company(rs.getInt("id"), rs.getString("name")));
-        return null;
-    }
-
-    @Override
-    public void save(Company obj) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public Company findByUsername(String username) {
-        return null;
-    }
+    List<Company> findAllByNameContainingIgnoreCase(String fragment);
 }
