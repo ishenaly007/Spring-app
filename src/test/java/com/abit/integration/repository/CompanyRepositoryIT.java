@@ -4,7 +4,6 @@ import com.abit.annotation.IT;
 import com.abit.spring.database.repository.CompanyRepository;
 import com.abit.spring.entity.Company;
 import jakarta.persistence.EntityManager;
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -57,14 +56,14 @@ public class CompanyRepositoryIT {
     }
 
     @Test
-    void findByNameFragment(){
+    void findByNameFragment() {
         var company = companyRepository.findAllByNameContainingIgnoreCase("Comp");
         assertNotNull(company);
         System.out.println(company);
     }
 
     @Test
-    void findByName(){
+    void findByName() {
         var company = companyRepository.findByName("Company A");
 
         System.out.println(company);

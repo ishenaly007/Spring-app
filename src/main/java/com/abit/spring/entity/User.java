@@ -9,7 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"company", "userChats"})
 @Data
 @Entity
 @Builder

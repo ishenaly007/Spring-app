@@ -8,7 +8,7 @@ import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "locales")
 @Data
 @Builder
 @Entity
