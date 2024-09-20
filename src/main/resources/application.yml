@@ -3,18 +3,18 @@ db:
   password: futureSQL
   url: jdbc:postgresql://localhost:5432/postgres
   driver: org.postgresql.Driver
-  pool:size: 12
-  properties:
-    first: 1
-    last: 2
-    key: value
-  pools:
-    - size: 12
-      timeout: 20
-    - size: 12
-      timeout: 30
-    - size: 12
-      timeout: 40
+#  pool:size: 12
+#  properties:
+#    first: 1
+#    last: 2
+#    key: value
+#  pools:
+#    - size: 12
+#      timeout: 20
+#    - size: 12
+#      timeout: 30
+#    - size: 12
+#      timeout: 40
 logging:
   level:
     root: warn
@@ -22,12 +22,19 @@ logging:
   file:
     name: com.abit
     path: /
+
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
   datasource:
     url: jdbc:postgresql://localhost:5432/springdata
     username: postgres
     password: futureSQL
     driver-class-name: org.postgresql.Driver
+
   jpa:
     properties:
       hibernate:
