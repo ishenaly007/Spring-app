@@ -36,6 +36,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
+    open-in-view: false #отключили авто открытие транзакции в контроллерах?
     properties:
       hibernate:
         show_sql: true

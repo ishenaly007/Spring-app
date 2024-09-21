@@ -30,10 +30,10 @@ public class GreetingController {
                               @CookieValue("JSESSIONID") String jsessionid,
                               @PathVariable("id") Integer id,
                               Model model,
-                              ProductReadDto productReadDto
+                              ProductReadDto productReadDto //этого через url будем добавлять типа: &id=1&name=Lenovo
     ) {
         mv.setViewName("greeting/hello");
-        model.addAttribute("user", new UserReadDto(1L, "Andrei"));
+        //model.addAttribute("user", new UserReadDto(1L, "Andrei"));
         model.addAttribute("product", productReadDto);
         return mv;
     }

@@ -1,13 +1,9 @@
 package com.abit.spring.dto;
 
-import lombok.*;
+import lombok.Value;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Setter
-@Getter
+@Value
 public class UserDto {
-    private int id;
-    private String username;
+    int id;
+    String username;
 }

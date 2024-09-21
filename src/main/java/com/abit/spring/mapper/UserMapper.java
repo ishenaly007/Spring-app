@@ -1,20 +1,23 @@
 package com.abit.spring.mapper;
 
-import com.abit.spring.dto.UserDto;
+import com.abit.spring.dto.UserReadDto;
 import com.abit.spring.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @RequiredArgsConstructor
 @ToString
-public class UserMapper {
-    private final UserDto userDto;
+public class UserMapper implements Mapper<User, UserReadDto> {
 
-    /*public UserDto mapFrom(User obj) {
-        return new UserDto(obj.getId(),
+    @Override
+    public UserReadDto map(User obj) {
+        return new UserReadDto(obj.getId(),
                 obj.getUsername(),
+                obj.getFirstname(),
+                obj.getLastname(),
+                obj.getBirthDate(),
                 obj.getRole(),
-                new CompanyMapper().mapFrom(obj.getCompany())
+                new CompanyReadMapper().map(obj.getCompany())
         );
-    }*/
+    }
 }

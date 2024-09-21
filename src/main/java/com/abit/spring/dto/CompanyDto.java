@@ -1,12 +1,9 @@
 package com.abit.spring.dto;
 
-import lombok.*;
+import lombok.Value;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Data
-@Builder
+@Value
 public class CompanyDto {
-    private Integer id;
+    Integer id;
+    String name;
 }

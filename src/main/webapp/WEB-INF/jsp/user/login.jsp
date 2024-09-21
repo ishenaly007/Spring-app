@@ -14,5 +14,6 @@
     </label><br/>
     <button type="submit">Login</button>
 </form>
+Welcome ${requestScope.login.username}!
 </body>
 </html>
