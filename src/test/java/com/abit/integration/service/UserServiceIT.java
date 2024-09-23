@@ -58,10 +58,9 @@ public class UserServiceIT {
 
     @Test
     void update() {
-        // Исходный пользователь, который будет обновлен
+
         Integer userId = 2;
 
-        // Данные для обновления
         UserCreateEditDto updatedUserDto = new UserCreateEditDto(
                 "UpdatedUsername",
                 "UpdatedFirstname",
