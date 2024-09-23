@@ -14,13 +14,22 @@ import java.util.List;
 
 @Controller
 @RequestMapping("api/v1")
-@SessionAttributes({"user"})
+@SessionAttributes({"userReadDto"})
 public class GreetingController {
 
     @ModelAttribute("roles")
     public List<Role> getRoles() {
         return Arrays.asList(Role.values());
     }//вызывается перед каждым запросом
+
+    @GetMapping("/hello")
+    public String hello(
+            Model model,
+            UserReadDto userReadDto
+    ) {
+        model.addAttribute( userReadDto);
+        return "greeting/hello";
+    }
 
     @GetMapping("/hello/{id}")
     public ModelAndView hello(ModelAndView mv,
@@ -34,12 +43,14 @@ public class GreetingController {
     ) {
         mv.setViewName("greeting/hello");
         //model.addAttribute("user", new UserReadDto(1L, "Andrei"));
-        model.addAttribute("product", productReadDto);
+        model.addAttribute( productReadDto);
         return mv;
     }
 
+
+
     @GetMapping("/bye")
-    public String bye(@SessionAttribute("user") UserReadDto user) {
+    public String bye(@SessionAttribute UserReadDto userReadDto) {
         return "greeting/bye";
     }
 }
