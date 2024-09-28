@@ -9,10 +9,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer>,
+        FilterUserRepository, QuerydslPredicateExecutor<User> {
 
     Page<User> findAllBy(Pageable pageable);
 
@@ -40,4 +42,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("update User u set u.role = :role " +
            "where u.id in (:ids)")
     int updateRole(Role role, Integer... ids);
+
 }
