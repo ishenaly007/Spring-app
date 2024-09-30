@@ -26,6 +26,8 @@ public class User implements BaseEntity<Integer> {
 
     private String lastname;
 
+    private String image;
+
     @Column(name = "birth_date")
     private LocalDate birthDate;
 

@@ -13,9 +13,9 @@ VALUES (1, 'en', 'English Description for Company A'),
 
 
 INSERT INTO users (username, birth_date, firstname, lastname, role, company_id)
-VALUES ('userA', '1990-01-01', 'Alex', 'Smith', 'user', 1),
-       ('userB', '1991-02-02', 'Bob', 'Johnson', 'admin', 2),
-       ('userC', '1992-03-03', 'Charlie', 'Williams', 'moderator', 3);
+VALUES ('userA', '1990-01-01', 'Alex', 'Smith', 'USER', 1),
+       ('userB', '1991-02-02', 'Bob', 'Johnson', 'ADMIN', 2),
+       ('userC', '1992-03-03', 'Charlie', 'Williams', 'MODERATOR', 3);
 
 
 INSERT INTO payment (amount, receiver_id)

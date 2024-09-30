@@ -43,3 +43,7 @@ spring:
         format_sql: true
         hbm2ddl:
           auto: validate
+
+app:
+  image:
+    bucket: C:\Users\Ishenaly\IdeaProjects\Spring-app\images
