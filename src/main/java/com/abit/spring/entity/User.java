@@ -28,6 +28,8 @@ public class User implements BaseEntity<Integer> {
 
     private String image;
 
+    private String password;
+
     @Column(name = "birth_date")
     private LocalDate birthDate;
 

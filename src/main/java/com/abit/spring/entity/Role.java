@@ -1,5 +1,12 @@
 package com.abit.spring.entity;
 
-public enum Role {
-    ADMIN, USER, MODERATOR
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
+    ADMIN, USER, MODERATOR;
+
+    @Override
+    public String getAuthority() {
+        return this.name();
+    }
 }

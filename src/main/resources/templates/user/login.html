@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
+<div style="color: red" th:if="${param.error}">
+    Invalid username or password!
+</div>
 <form action="/login" method="post">
     <label for="username">Username:
-        <input id="username" type="text" name="username" value="username">
-    </label><br/>
+        <input id="username" type="text" name="username">
+    </label><br>
     <label for="password">Password:
         <input id="password" type="password" name="password">
-    </label><br/>
+    </label><br>
     <button type="submit">Login</button>
 </form>
-<h1>Welcome ${user.username}!</h1>
 <form action="/users/registration">
     <button type="submit">Registration</button>
 </form>

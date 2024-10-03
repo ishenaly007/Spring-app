@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer>,
         FilterUserRepository, QuerydslPredicateExecutor<User> {
@@ -32,15 +33,16 @@ public interface UserRepository extends JpaRepository<User, Integer>,
             "u.lastname like %:lastname%")
     List<User> findAllByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(String firstname, String lastname);
 
-    @Query(
-            value = "SELECT u.* FROM users u " +
-                    "WHERE u.username = :username",
-            nativeQuery = true)
-    User findByUsername(String username);
+//    @Query(
+//            value = "SELECT u.* FROM users u " +
+//                    "WHERE u.username = :username",
+//            nativeQuery = true)
+//    User findByUsername(String username);
 
     @Modifying(clearAutomatically = true)
     @Query("update User u set u.role = :role " +
            "where u.id in (:ids)")
     int updateRole(Role role, Integer... ids);
 
+    Optional<User> findByUsername(String username);
 }

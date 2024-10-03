@@ -3,18 +3,7 @@ db:
   password: futureSQL
   url: jdbc:postgresql://localhost:5432/postgres
   driver: org.postgresql.Driver
-#  pool:size: 12
-#  properties:
-#    first: 1
-#    last: 2
-#    key: value
-#  pools:
-#    - size: 12
-#      timeout: 20
-#    - size: 12
-#      timeout: 30
-#    - size: 12
-#      timeout: 40
+
 logging:
   level:
     root: warn
