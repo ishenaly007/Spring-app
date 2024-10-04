@@ -7,8 +7,8 @@ import com.abit.spring.entity.Role;
 import com.abit.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.TestConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,15 +38,17 @@ public class UserServiceIT {
         assertThat(user).isNotNull();
     }
 
-    /*@Test
+    @Test
     void create() {
         UserCreateEditDto userDto = new UserCreateEditDto(
                 "Asas",
+                "test",
                 "Asasa",
                 "Asasas",
                 LocalDate.now(),
                 Role.ADMIN,
                 1,
+                new MockMultipartFile("test", new byte[0])
 
         );
         UserReadDto actual = userService.createUser(userDto);
@@ -56,20 +58,22 @@ public class UserServiceIT {
         assertEquals(userDto.getBirthDate(), actual.getBirthDate());
         assertEquals(userDto.getCompanyId(), actual.getCompany().getId());
         assertSame(userDto.getRole(), actual.getRole());
-    }*/
+    }
 
-    /*@Test
+    @Test
     void update() {
 
         Integer userId = 2;
 
         UserCreateEditDto updatedUserDto = new UserCreateEditDto(
                 "UpdatedUsername",
+                "testUpd",
                 "UpdatedFirstname",
                 "UpdatedLastname",
                 LocalDate.of(1990, 1, 1),
                 Role.USER,
-                1
+                1,
+                new MockMultipartFile("test", new byte[0])
         );
         Optional<UserReadDto> updatedUserOptional = userService.updateUser(userId, updatedUserDto);
         System.out.println("updated1 " + updatedUserOptional);
@@ -85,7 +89,7 @@ public class UserServiceIT {
         assertEquals(updatedUserDto.getBirthDate(), updatedUser.getBirthDate());
         assertEquals(updatedUserDto.getCompanyId(), updatedUser.getCompany().getId());
         assertSame(updatedUserDto.getRole(), updatedUser.getRole());
-    }*/
+    }
 
     @Test
     void delete() {

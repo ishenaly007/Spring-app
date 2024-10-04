@@ -3,48 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>User</title>
+    <!-- Подключаем CSS для оформления -->
+    <link rel="stylesheet" th:href="@{/css/user.css}"/>
 </head>
 <body>
+<!-- Вставка хедера (если он есть) -->
 <div th:insert="~{fragment::header}"></div>
+
+<!-- Форма для обновления данных пользователя -->
 <form th:action="@{/users/{userId}/update(userId=${user.id})}" enctype="multipart/form-data" method="post"
-      th:object="${user}">
-    <label for="username">Username:
+      th:object="${user}" class="user-form">
+    <div class="form-group">
+        <label for="username">Username:</label>
         <input id="username" type="text" name="username" th:value="*{username}">
-    </label><br>
-    <label for="birthDate">BirthDate:
+    </div>
+
+    <div class="form-group">
+        <label for="birthDate">BirthDate:</label>
         <input id="birthDate" type="date" name="birthDate" th:value="*{birthDate}">
-    </label><br>
-    <label for="firstname">Firstname:
+    </div>
+
+    <div class="form-group">
+        <label for="firstname">Firstname:</label>
         <input id="firstname" type="text" name="firstname" th:value="*{firstname}">
-    </label><br>
-    <label for="lastname">Lastname:
+    </div>
+
+    <div class="form-group">
+        <label for="lastname">Lastname:</label>
         <input id="lastname" type="text" name="lastname" th:value="*{lastname}">
-    </label><br>
-    <div th:if="${user.image}">
+    </div>
+
+    <!-- Показ изображения, если оно существует -->
+    <div class="form-group" th:if="${user.image}">
         <img width="80" th:src="@{/api/v1/users/{userId}/avatar(userId=${user.id})}" alt="User image">
     </div>
-    <label for="image">Image:
+
+    <!-- Загрузка изображения -->
+    <div class="form-group">
+        <label for="image">Image:</label>
         <input id="image" type="file" name="image">
-    </label><br>
-    <div th:each="role: ${roles}">
-        <input th:id="${role}" type="radio" name="role" th:value="${role}" th:checked="${role==user.role}">
-        <label th:for="${role}" th:text="${role}">Role name</label>
     </div>
-    <div>
-        <label for="company">Company:
-            <select id="company" name="companyId">
-                <option th:each="company: ${companies}"
-                        th:value="${company.id}"
-                        th:selected="${company.id == user.company.id}"
-                        th:text="${company.name}">Company
-                </option>
-            </select>
-        </label>
+
+    <!-- Выбор роли пользователя -->
+    <div class="form-group">
+        <label>Role:</label>
+        <div th:each="role: ${roles}" class="role-radio">
+            <input th:id="${role}" type="radio" name="role" th:value="${role}" th:checked="${role == user.role}">
+            <label th:for="${role}" th:text="${role}">Role name</label>
+        </div>
     </div>
-    <button type="submit">Update</button>
+
+    <!-- Выбор компании пользователя -->
+    <div class="form-group">
+        <label for="company">Company:</label>
+        <select id="company" name="companyId">
+            <option th:each="company: ${companies}"
+                    th:value="${company.id}"
+                    th:selected="${company.id == user.company.id}"
+                    th:text="${company.name}">Company
+            </option>
+        </select>
+    </div>
+
+    <!-- Кнопка обновления -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
 </form>
+
+<!-- Форма для удаления пользователя, если роль пользователя - ADMIN -->
 <form th:action="@{/users/{userId}/delete(userId=${user.id})}" th:if="${user.role.name() == 'ADMIN'}" method="post">
-    <button type="submit">Remove</button>
+    <button type="submit" class="btn btn-danger">Remove</button>
 </form>
 </body>
 </html>

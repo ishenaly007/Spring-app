@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class UserCreateEditDto {
     @Email
     String username;
+    String rawPassword;
     @Size(min = 3, max = 30)
     String firstname;
     String lastname;
