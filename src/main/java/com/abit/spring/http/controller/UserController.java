@@ -37,7 +37,7 @@ public class UserController {
     @GetMapping
     public String findAllUsers(Model model, UserFilter filter, Pageable pageable) {
 //        model.addAttribute("users", userService.findAllUsers());
-        Page<UserReadDto> page = userService.findAllUsers(filter, pageable);
+        Page<UserReadDto> page = userService.findAll(filter, pageable);
         model.addAttribute("users", PageResponse.of(page));
         model.addAttribute("filter", filter);
         return "user/users";
@@ -59,7 +59,7 @@ public class UserController {
                                @CurrentSecurityContext SecurityContext securityContext,
                                @AuthenticationPrincipal UserDetails userDetails //чаще используется вот это чем целый контекст
     ) {
-        return userService.findUserById(id)
+        return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
                     model.addAttribute("roles", Role.values());

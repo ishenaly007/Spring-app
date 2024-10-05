@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
     private final UserCreateEditMapper userCreateEditMapper;
     private final ImageService imageService;
 
-    public Page<UserReadDto> findAllUsers(UserFilter userFilter, Pageable pageable) {
+    public Page<UserReadDto> findAll(UserFilter userFilter, Pageable pageable) {
         var predicate = QPredicates.builder()
                 .add(userFilter.firstname(), user.firstname::containsIgnoreCase)
                 .add(userFilter.lastname(), user.lastname::containsIgnoreCase)
@@ -44,19 +44,19 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll(predicate, pageable).map(userReadMapper::map);
     }
 
-    public List<UserReadDto> findAllUsers() {
+    public List<UserReadDto> findAll() {
         return userRepository.findAll().stream()
                 .map(userReadMapper::map)
                 .toList();
     }
 
-    public List<UserReadDto> findAllUsers(UserFilter userFilter) {
+    public List<UserReadDto> findAll(UserFilter userFilter) {
         return userRepository.findAllByFilter(userFilter).stream()
                 .map(userReadMapper::map)
                 .toList();
     }
 
-    public Optional<UserReadDto> findUserById(Integer id) {
+    public Optional<UserReadDto> findById(Integer id) {
         return userRepository.findById(id).map(userReadMapper::map);
     }
 

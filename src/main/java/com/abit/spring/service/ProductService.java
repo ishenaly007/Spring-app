@@ -17,11 +17,11 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductReadMapper productReadMapper;
 
-    public List<ProductReadDto> findAllProducts() {
+    public List<ProductReadDto> findAll() {
         return productRepository.findAll().stream().map(productReadMapper::map).toList();
     }
 
-    public Optional<ProductReadDto> findProductById(Integer id) {
+    public Optional<ProductReadDto> findById(Integer id) {
         return productRepository.findById(id).map(productReadMapper::map);
     }
 }

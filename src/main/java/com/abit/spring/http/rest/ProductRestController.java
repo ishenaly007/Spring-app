@@ -20,12 +20,12 @@ public class ProductRestController {
 
     @GetMapping
     public List<ProductReadDto> getAllProducts() {
-        return productService.findAllProducts();
+        return productService.findAll();
     }
 
     @GetMapping("/{id}")
     public ProductReadDto getProduct(@PathVariable("id") Integer id) {
-        return productService.findProductById(id)
+        return productService.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }

@@ -6,7 +6,7 @@ db:
 
 logging:
   level:
-    root: warn
+    root: info
     com.abit.spring.database.repository.pool.ConnectionPool: info
   file:
     name: com.abit

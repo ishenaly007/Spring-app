@@ -26,14 +26,14 @@ public class UserServiceIT {
 
     @Test
     void findAll() {
-        List<UserReadDto> users = userService.findAllUsers();
+        List<UserReadDto> users = userService.findAll();
         System.out.println(users);
         assertThat(users).hasSize(3);
     }
 
     @Test
     void findById() {
-        UserReadDto user = Optional.ofNullable(userService.findUserById(2)).get().get();
+        UserReadDto user = Optional.ofNullable(userService.findById(2)).get().get();
         System.out.println(user);
         assertThat(user).isNotNull();
     }

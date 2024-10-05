@@ -27,13 +27,13 @@ public class UserRestController {
 
     @GetMapping
     public PageResponse<UserReadDto> findAllUsers(UserFilter filter, Pageable pageable) {
-        Page<UserReadDto> page = userService.findAllUsers(filter, pageable);
+        Page<UserReadDto> page = userService.findAll(filter, pageable);
         return PageResponse.of(page);
     }
 
     @GetMapping("/{id}")
     public UserReadDto findUserById(@PathVariable("id") Integer id) {
-        return userService.findUserById(id)
+        return userService.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 

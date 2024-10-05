@@ -24,14 +24,14 @@ public class ProductController {
 
     @GetMapping
     public String findAllProducts(Model model) {
-        List<ProductReadDto> products = productService.findAllProducts();
+        List<ProductReadDto> products = productService.findAll();
         model.addAttribute("products", products);
         return "product/products";
     }
 
     @GetMapping("/{id}")
     public String findProductById(@PathVariable("id") Integer id, Model model) {
-        return productService.findProductById(id).map(product -> {
+        return productService.findById(id).map(product -> {
             model.addAttribute("product", product);
             model.addAttribute("types", ProductType.values());
             return "product/product";
