@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>Product</title>
+    <link rel="stylesheet" th:href="@{/css/product.css}">
 </head>
 <body>
 <form th:action="@{/products/{productId}/update(productId=${product.id})}" enctype="multipart/form-data" method="post"
@@ -17,36 +18,30 @@
         <input id="type" type="text" name="type" th:value="*{type}">
     </label><br>
     <label for="color">Product color:
-        <input id="color" type="text" name="color" th:value="*{color}">
+        <input id="color" type="text" name="color" th:value="*{color}" oninput="updateColorPreview()">
+        <div id="color-preview"
+             style="display:inline-block; width:30px; height:30px; margin-left:10px; border: 1px solid #000;"></div>
     </label><br>
     <label for="price">Price:
         <input id="price" type="text" name="price" th:value="*{price}">
     </label><br>
-    <!--<div th:if="${user.image}">
-        <img width="80" th:src="@{/api/v1/users/{userId}/avatar(userId=${user.id})}" alt="User image">
-    </div>
-    <label for="image">Image:
-        <input id="image" type="file" name="image">
-    </label><br>-->
-    <!--<div th:each="role: ${roles}">
-        <input th:id="${role}" type="radio" name="role" th:value="${role}" th:checked="${role==user.role}">
-        <label th:for="${role}" th:text="${role}">Role name</label>
-    </div>-->
-<!--    <div>-->
-<!--        <label for="company">Company:-->
-<!--            <select id="company" name="companyId">-->
-<!--                <option th:each="company: ${companies}"-->
-<!--                        th:value="${company.id}"-->
-<!--                        th:selected="${company.id == user.company.id}"-->
-<!--                        th:text="${company.name}">Company-->
-<!--                </option>-->
-<!--            </select>-->
-<!--        </label>-->
-<!--    </div>-->
+
     <button type="submit">Update</button>
 </form>
-<!--<form th:action="@{/users/{userId}/delete(userId=${user.id})}" th:if="${user.role.name() == 'ADMIN'}" method="post">-->
-<!--    <button type="submit">Remove</button>-->
-<!--</form>-->
 </body>
+<script>
+    // Функция для динамического изменения цвета при вводе
+    function updateColorPreview() {
+        const colorInput = document.getElementById('color').value;
+        const colorPreview = document.getElementById('color-preview');
+        colorPreview.style.backgroundColor = colorInput; // Меняем цвет фона блока
+    }
+
+    // Устанавливаем цвет при загрузке страницы на основе значения, полученного из базы
+    window.onload = function () {
+        const colorInput = document.getElementById('color').value; // Получаем значение цвета из input
+        const colorPreview = document.getElementById('color-preview');
+        colorPreview.style.backgroundColor = colorInput; // Устанавливаем начальный цвет
+    }
+</script>
 </html>

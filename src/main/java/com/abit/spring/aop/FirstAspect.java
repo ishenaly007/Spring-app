@@ -1,15 +1,16 @@
 package com.abit.spring.aop;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Aspect
 @Component
+@Order(1)
 public class FirstAspect {
 
     @Pointcut("@within(org.springframework.stereotype.Controller)")
@@ -60,17 +61,23 @@ public class FirstAspect {
     }
 
     //Advice
-    @Before("anyServiceFindByIdMethod()" +
-            "&& args(id)" +
-            "&& target(service)" +
-            "&& this(proxyService)" +
-            "&& @within(transactional)")
-    public void addLogging(
-            Object id,
-            Object service,
-            Object proxyService,
-            Transactional transactional
-    ) {
-        log.info("Adding logging to the Aspect");
+    @Before("anyServiceFindByIdMethod()" + "&& args(id)" + "&& target(service)" + "&& this(proxyService)" + "&& @within(transactional)")
+    public void addLogging(JoinPoint joinPoint, Object id, Object service, Object proxyService, Transactional transactional) {
+        log.info("Before invoke findById method in class {}, with id {}", service, id);
+    }
+
+    @AfterReturning(value = "anyServiceFindByIdMethod()" + "&& target(service)", returning = "result")
+    public void addLoggingAfterReturning(Object result, Object service) {
+        log.info("AfterReturning invoke findById method in class {}, with result {}", service, result);
+    }
+
+    @AfterThrowing(value = "anyServiceFindByIdMethod()" + "&& target(service)", throwing = "ex")
+    public void addLoggingAfterThrowing(Throwable ex, Object service) {
+        log.info("Throwing invoked findById method in class {}, with throwing {}", service, ex.getClass());
+    }
+
+    @After(value = "anyServiceFindByIdMethod()" + "&& target(service)")
+    public void addLoggingAfter(Object service) {
+        log.info("After invoke findById method in class {}", service);
     }
 }

@@ -1,0 +1,74 @@
+/* Основные стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Оформление формы */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Оформление полей ввода */
+input[type="text"], input[type="file"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Оформление меток */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Оформление кнопок */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Стили для кнопки удаления */
+button.delete {
+    background-color: #f44336;
+    margin-top: 10px;
+}
+
+/* Стили для кнопки при наведении */
+button:hover {
+    background-color: #45a049;
+}
+
+button.delete:hover {
+    background-color: #e53935;
+}
+
+/* Стили для адаптивности */
+@media (max-width: 600px) {
+    form {
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
