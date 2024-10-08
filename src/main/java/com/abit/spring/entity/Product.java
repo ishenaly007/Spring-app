@@ -19,11 +19,9 @@ public class Product implements BaseEntity<Integer> {
 
     private String name;
     private String description;
-    private Integer price;
-    private String image;
-
+    private String color;
     @Enumerated(EnumType.STRING)
     private ProductType type;
-    private String color;
-
+    private Integer price;
+    private String image;
 }
